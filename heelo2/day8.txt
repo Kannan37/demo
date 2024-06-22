@@ -1,0 +1,521 @@
+mysql>
+mysql> select date("13-09-2024 23:22:45");
++-----------------------------+
+| date("13-09-2024 23:22:45") |
++-----------------------------+
+| NULL                        |
++-----------------------------+
+1 row in set, 1 warning (0.01 sec)
+
+mysql> select date("13-09-2024 23:22:45") ffrom dual;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dual' at line 1
+mysql> select date("2024-03-23 23:22:45") from dual;
++-----------------------------+
+| date("2024-03-23 23:22:45") |
++-----------------------------+
+| 2024-03-23                  |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date("2024-03-23 23:22:45") ;
++-----------------------------+
+| date("2024-03-23 23:22:45") |
++-----------------------------+
+| 2024-03-23                  |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select time("2024-03-23 23:22:45") ;
++-----------------------------+
+| time("2024-03-23 23:22:45") |
++-----------------------------+
+| 23:22:45                    |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(hour from "2024-03-23 23:22:45") ;
++------------------------------------------+
+| extract(hour from "2024-03-23 23:22:45") |
++------------------------------------------+
+|                                       23 |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract (secomd from "2024-03-23 23:22:45") ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from "2024-03-23 23:22:45")' at line 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select extract( second from "2024-03-23 23:22:45") ;
++---------------------------------------------+
+| extract( second from "2024-03-23 23:22:45") |
++---------------------------------------------+
+|                                          45 |
++---------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract( minutes from "2024-03-23 23:22:45") ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'minutes from "2024-03-23 23:22:45")' at line 1
+mysql> ;
+ERROR:
+No query specified
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select extract( minute from "2024-03-23 23:22:45") ;
++---------------------------------------------+
+| extract( minute from "2024-03-23 23:22:45") |
++---------------------------------------------+
+|                                          22 |
++---------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff( day,"2024-03-23 23:22:45") ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select timestampdiff( day,"2002-11-01" ,"2024-06-22") ;
++------------------------------------------------+
+| timestampdiff( day,"2002-11-01" ,"2024-06-22") |
++------------------------------------------------+
+|                                           7904 |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff( hour,"2002-11-01" ,"2024-06-22") ;
++-------------------------------------------------+
+| timestampdiff( hour,"2002-11-01" ,"2024-06-22") |
++-------------------------------------------------+
+|                                          189696 |
++-------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff( second,"2002-11-01" ,"2024-06-22") ;
++---------------------------------------------------+
+| timestampdiff( second,"2002-11-01" ,"2024-06-22") |
++---------------------------------------------------+
+|                                         682905600 |
++---------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff( millisecond,"2002-11-01" ,"2024-06-22") ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'millisecond,"2002-11-01" ,"2024-06-22")' at line 1
+mysql>
+mysql>
+mysql> select isnull(null);
++--------------+
+| isnull(null) |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select isnull(1);
++-----------+
+| isnull(1) |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select coalesce(null,1);
++------------------+
+| coalesce(null,1) |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select coalesce(null,0,6);
++--------------------+
+| coalesce(null,0,6) |
++--------------------+
+|                  0 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select coalesce(null,,6);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',6)' at line 1
+mysql> select coalesce(null,null,6);
++-----------------------+
+| coalesce(null,null,6) |
++-----------------------+
+|                     6 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select coalesce("shipping","under processing");
++-----------------------------------------+
+| coalesce("shipping","under processing") |
++-----------------------------------------+
+| shipping                                |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select coalesce(null,"under processing");
++-----------------------------------+
+| coalesce(null,"under processing") |
++-----------------------------------+
+| under processing                  |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show databases'
+    '> show databases';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''
+show databases'' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| product            |
+| sakila             |
+| sys                |
+| university         |
+| world              |
++--------------------+
+8 rows in set (0.12 sec)
+
+mysql> use product;
+Database changed
+mysql> show tables
+    -> ;
++-------------------+
+| Tables_in_product |
++-------------------+
+| product           |
++-------------------+
+1 row in set (0.02 sec)
+
+mysql> desc product;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(10) | NO   |     | NULL    |                |
+| description | varchar(20) | YES  |     | NULL    |                |
+| ph_no       | bigint      | YES  |     | NULL    |                |
+| email       | varchar(25) | YES  | UNI | NULL    |                |
+| price       | int         | YES  |     | NULL    |                |
+| date        | date        | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> create table product2 (brand varchar(15) ,price int );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into product2 values("pume",500);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into product2 values("nike",600);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product2 values("pumo",800);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into product2 values("apple",800);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product2 values("arrow",800);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from product2;
++-------+-------+
+| brand | price |
++-------+-------+
+| pume  |   500 |
+| nike  |   600 |
+| pumo  |   800 |
+| apple |   800 |
+| arrow |   800 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select brand ,price,
+    -> case
+    -> when brand="puma" then price*0.25 as discount;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as discount' at line 3
+mysql> select brand ,price,
+    -> case
+    -> when brand="puma" then price*0.25 as discount
+    -> when brand="nike" then price*0.25 as discount
+    -> else price*0.10 as discount
+    -> end
+    -> from product2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as discount
+when brand="nike" then price*0.25 as discount
+else price*0.10 as dis' at line 3
+mysql> select brand ,price,
+    -> case
+    -> when brand="puma" then price*0.25 as discount,
+    -> when brand="nike" then price*0.10 as discount
+    -> end
+    -> else price*0.10 as discount;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as discount,
+when brand="nike" then price*0.10 as discount
+end
+else price*0.10 ' at line 3
+mysql>
+mysql> select brand ,price,
+    -> case
+    -> when brand="puma" then price*0.25 as discount,
+    -> when brand="nike" then price*0.10 as discount
+    -> else price*0.10 as discount
+    -> end
+    -> from product2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as discount,
+when brand="nike" then price*0.10 as discount
+else price*0.10 as di' at line 3
+mysql> select brand ,price,
+    -> case
+    -> when brand="puma" then price*0.25 as discount
+    -> when brand="nike" then price*0.15 as discount
+    -> else price*0.10 as discount
+    -> end
+    -> from product2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as discount
+when brand="nike" then price*0.15 as discount
+else price*0.10 as dis' at line 3
+mysql> select brand ,price,
+    -> case
+    -> when brand="puma" then price*0.25 as discount,
+    -> when brand="nike" then price*0.15 as discount,
+    -> else price*0.10 as discount
+    -> end
+    -> from product2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as discount,
+when brand="nike" then price*0.15 as discount,
+else price*0.10 as d' at line 3
+mysql> if(5=5,'true','false');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'if(5=5,'true','false')' at line 1
+mysql> select if(5=5,'true','false');
++------------------------+
+| if(5=5,'true','false') |
++------------------------+
+| true                   |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select if(5=5,'true','false');
++------------------------+
+| if(5=5,'true','false') |
++------------------------+
+| true                   |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select ifnull(5=5,'true','false');
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'ifnull'
+mysql> select ifnull(5,0);
++-------------+
+| ifnull(5,0) |
++-------------+
+|           5 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select ifnull(null,0);
++----------------+
+| ifnull(null,0) |
++----------------+
+|              0 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select ifnull(2,0);
++-------------+
+| ifnull(2,0) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select nullif(2,0);
++-------------+
+| nullif(2,0) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select nullif(2,2);
++-------------+
+| nullif(2,2) |
++-------------+
+|        NULL |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> WINDOW FUNCTIONS
+    ->
+    ->
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WINDOW FUNCTIONS' at line 1
+mysql> Select * from product;
++----+--------+----------------------+------------+--------------------+-------+------------+
+| id | name   | description          | ph_no      | email              | price | date       |
++----+--------+----------------------+------------+--------------------+-------+------------+
+|  1 | kannan | jkfkujs              | 9746637368 | kanna@gmail.com    |  1000 | 2024-06-19 |
+|  2 | guna   | bk1243dtyetywkujs    | 8746637368 | guna.123@gmail.com | 20000 | NULL       |
+|  3 | ram    | rammk@3#$dtyetywkujs | 7746637368 | ram1@yahoo.com     |  6000 | NULL       |
+|  4 | akash  | asjkk@3etywkujs      |  174637368 | ask1@yahoo.com     |   500 | NULL       |
+|  5 | abiash | asjkk@3etywkujs      |  235637368 | ask1@yahoo.a       |  1500 | NULL       |
++----+--------+----------------------+------------+--------------------+-------+------------+
+5 rows in set (0.00 sec)
+
+mysql> Select * from product2;
++-------+-------+
+| brand | price |
++-------+-------+
+| pume  |   500 |
+| nike  |   600 |
+| pumo  |   800 |
+| apple |   800 |
+| arrow |   800 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select brand,price,rank()
+    -> over(order by salary desc)
+    -> from product2;
+ERROR 1054 (42S22): Unknown column 'salary' in 'window order by'
+mysql> select brand,price,rank()
+    -> over(order by price desc)
+    -> from product2;
++-------+-------+----------------------------------+
+| brand | price | rank()
+over(order by price desc) |
++-------+-------+----------------------------------+
+| pumo  |   800 |                                1 |
+| apple |   800 |                                1 |
+| arrow |   800 |                                1 |
+| nike  |   600 |                                4 |
+| pume  |   500 |                                5 |
++-------+-------+----------------------------------+
+5 rows in set (0.01 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> select brand,price,rank()
+    -> over(order by salary desc) as ranking
+    -> from product2;
+ERROR 1054 (42S22): Unknown column 'salary' in 'window order by'
+mysql> select brand,price,rank()
+    -> over(order by price desc) as ranking
+    -> from product2;
++-------+-------+---------+
+| brand | price | ranking |
++-------+-------+---------+
+| pumo  |   800 |       1 |
+| apple |   800 |       1 |
+| arrow |   800 |       1 |
+| nike  |   600 |       4 |
+| pume  |   500 |       5 |
++-------+-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select brand,price,rank()
+    -> select brand,price,rank()
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select brand,price,rank()' at line 2
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select brand,price,dense_rank()
+    -> over(order by price desc) as ranking
+    -> from product2;
++-------+-------+---------+
+| brand | price | ranking |
++-------+-------+---------+
+| pumo  |   800 |       1 |
+| apple |   800 |       1 |
+| arrow |   800 |       1 |
+| nike  |   600 |       2 |
+| pume  |   500 |       3 |
++-------+-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select brand,price,row_number()
+    -> over(order by price desc) as ranking
+    -> from product2;
++-------+-------+---------+
+| brand | price | ranking |
++-------+-------+---------+
+| pumo  |   800 |       1 |
+| apple |   800 |       2 |
+| arrow |   800 |       3 |
+| nike  |   600 |       4 |
+| pume  |   500 |       5 |
++-------+-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select count(*) from product2;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(price) from product2;
++--------------+
+| count(price) |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(price) from product2;
++------------+
+| sum(price) |
++------------+
+|       3500 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select max(price) from product2;
++------------+
+| max(price) |
++------------+
+|        800 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select min(price) from product2;
++------------+
+| min(price) |
++------------+
+|        500 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(price) from product2;
++------------+
+| avg(price) |
++------------+
+|   700.0000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql>
